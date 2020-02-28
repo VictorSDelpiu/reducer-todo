@@ -1,17 +1,16 @@
 import React from 'react';
+import Todo from './Todo';
 
-
-export default function TodoList(props){
-    const complete = event =>{
-        event.preventDefault();
-        props.dispatch({type:'CHECK_COMPLETED', payload: event.target.id})
-    }
-    return(
-        <div className='doneParent'>
-            {props.state.map(todo =>{
-                return <p  className={`${todo.completed ? 'done' : ''}`}
-                id={todo.id} onClick={complete}>{todo.item}</p>
-            })}
+export default function TodoList({toggleComplete, todos}) {
+    console.log(todos)
+     if (todos) {
+         return (
+        <div>
+            <ul>
+                {todos.map((todo) => {
+                    return <Todo key={todo.id} toggleComplete={toggleComplete} todo={todo}/>
+                })}
+            </ul>
         </div>
-    )
-} 
+    )} else return <h1>Loading...</h1>
+}

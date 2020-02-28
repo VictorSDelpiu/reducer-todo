@@ -1,34 +1,24 @@
-import React, { useReducer, useState } from "react";
-import { ReducerList, initialState } from "./../reducers/ReducerList";
-import Todo from "./Todo";
+import React, { useState } from 'react';
 
-const TodoForm = props => {
-  console.log("Seat's Taken", props);
+export default function TodoForm({ addTodo, clearCompleted }) {
+	const [ input, setInput ] = useState('');
+	const submitHandler = (e) => {
+		e.preventDefault();
+		addTodo(input);
+		setInput('');
+	};
 
-  const [state, dispatch] = useReducer(ReducerList, initialState);
-  const [todo, setTodo] = useState("");
-
-  const handleChange = event => {
-    setTodo(event.target.value);
-  };
-
-
-  return (
-    <div className='form'>
-      <form>
-        <label htmlFor='todo'>Add Todo: </label>
-        <input
-          id='todo'
-          name='todo'
-          type='text'
-          value={todo}
-          onChange={handleChange}></input>
-        <button onClick={handleSubmit}>Add</button>
-        <button onClick={handleClear}>Delete</button>
-      </form>
-      <Todo id={state.id} todo={todo} dispatch={dispatch} state={state} />
-    </div>
-  );
-};
-
-export default TodoForm;
+	const clearCompletedHandler = (e) => {
+		e.preventDefault();
+		clearCompleted();
+	};
+	return (
+		<div>
+			<form onSubmit={(e) => submitHandler(e)}>
+				<input type="text" name="todo" value={input} onChange={(e) => setInput(e.target.value)} />
+				<button type="submit">Submit</button>
+				<button onClick={(e) => clearCompletedHandler(e)}>Clear Completed</button>
+			</form>
+		</div>
+	);
+}

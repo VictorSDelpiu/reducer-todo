@@ -1,4 +1,3 @@
-
 .App {
   text-align: center;
 }
@@ -28,35 +27,12 @@
 .App-link {
   color: #61dafb;
 }
-/* My styles */
-body{
-  background-color: white;
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-.doneParent p{
-  font-size: 1.8rem;
-  font-family:Montserrat;
-}
-
-.doneParent .done{
-  text-decoration: line-through;
- 
-}
-
-
-
-
-
-#root{
-  display: flex;
-  justify-content: center;
-}
-.App{
-	width:65%;
-	text-align: center;
-  background-color: white;	
-  margin: 2%;
-}
-
-.App .list .card{
-  background-color: #8FC1E3;
-} 
